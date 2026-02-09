@@ -76,12 +76,8 @@ WSGI_APPLICATION = 'agri_go.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'agri_go_db',
-        'USER': 'root',
-        'PASSWORD': 'Charan@8796',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
