@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold text-success">Recommended Crops for Your Field</h2>
+        <p class="text-muted">Based on your soil, water, and budget inputs</p>
+    </div>
+
+    <div class="row justify-content-center">
+        {% for crop in crops %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm border-0" style="border-radius: 15px;">
+                <div class="card-body p-4 text-center"> <div class="mb-3">
+                        <span class="badge bg-success-subtle text-success p-2">Best Match</span>
+                    </div>
+                    <h3 class="card-title text-success fw-bold">{{ crop.name }}</h3>
+                    <hr>
+                    <div class="text-start"> <p><strong>🌟 Advantages:</strong><br> {{ crop.advantages }}</p>
+                        <p><strong>🚜 Process:</strong><br> {{ crop.cultivation_process }}</p>
+                    </div>
+                    <div class="mt-auto pt-3 border-top">
+                        <p class="mb-0 fw-bold text-dark">Estimated Budget: ₹{{ crop.budget_range }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-md-8 text-center py-5">
+            <div class="alert alert-light border shadow-sm p-5">
+                <h4 class="text-warning">No exact matches found</h4>
+                <p>We couldn't find a crop that fits all those specific conditions. Try adjusting your budget or soil type.</p>
+                <a href="{% url 'home' %}" class="btn btn-success px-4 mt-3">Try Again</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="{% url 'home' %}" class="btn btn-outline-secondary px-5">Search Another Field</a>
+    </div>
+</div>
+{% endblock %}

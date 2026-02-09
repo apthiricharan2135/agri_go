@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Agri Go | Home{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card border-0 shadow-lg">
+            <div class="card-body p-5">
+                <h2 class="text-center mb-4 fw-bold text-success">Find Your Perfect Crop</h2>
+                <p class="text-muted text-center mb-4">Enter your field details below to receive expert recommendations.</p>
+                
+                <form action="{% url 'recommend' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Soil Type</label>
+                            <select name="soil_type" class="form-select">
+                                <option value="clay">Clay (Heavy)</option>
+                                <option value="loamy">Loamy (Balanced)</option>
+                                <option value="sandy">Sandy (Dry)</option>
+                                <option value="black">Black (Moist)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Water Availability</label>
+                            <select name="water" class="form-select">
+                                <option value="low">Low (Rain-fed)</option>
+                                <option value="medium">Medium (Canal/Well)</option>
+                                <option value="high">High (Irrigated)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Current Season</label>
+                            <select name="season" class="form-select">
+                                <option value="summer">Summer</option>
+                                <option value="monsoon">Monsoon</option>
+                                <option value="winter">Winter</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Budget Limit (₹)</label>
+                            <input type="number" name="budget" class="form-control" placeholder="e.g. 15000" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-lg w-100 mt-4 shadow">Get Recommendations</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
